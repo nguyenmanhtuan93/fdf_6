@@ -1,0 +1,18 @@
+<%= link_to product_path product do %>
+  <div id="product-<%= product.id %>">
+    <div class="picture">
+      <%= image_tag product.image.url if product.image? %>
+    </div>
+    <div class="product-name">
+      <%= product.name %>
+    </div>
+    <div class="rate">
+      <%= t :rating %>
+      <%= product.rating %>
+    </div>
+    <%= t :price %>
+    <%= product.price_tag %>
+    <%= t :quantity %>
+    <%= product.quantity %>
+  </div>
+<% end %>

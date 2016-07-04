@@ -39,3 +39,8 @@ en:
       about: "About"
       help: "Help"
       contact: "Contact"
+  allproduct: "All products"
+  product:
+    rating: "Rating"
+    price: "Price"
+    quantity: "Quantity"
