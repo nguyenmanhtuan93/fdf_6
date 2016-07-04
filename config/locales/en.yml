@@ -21,3 +21,21 @@
 
 en:
   hello: "Hello world"
+  project_name: "Foods and Drinks"
+  static_pages:
+    about:
+      title: "About"
+    help:
+      title: "Help"
+    contact:
+      title: "Contact"
+    home:
+      title: "Home"
+      signupnow: "Sign up now"
+  layout:
+    header:
+      login: "Log in"
+    footer:
+      about: "About"
+      help: "Help"
+      contact: "Contact"
