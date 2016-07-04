@@ -9,6 +9,9 @@ gem "jquery-rails"
 gem "turbolinks"
 gem "jbuilder", "~> 2.0"
 gem "sdoc", "~> 0.4.0", group: :doc
+gem "mini_magick"
+gem "carrierwave"
+gem "will_paginate", "3.0.7"
 
 group :development, :test do
   gem "sqlite3"
@@ -18,5 +21,5 @@ end
 group :development do
   gem "web-console", "~> 2.0"
   gem "spring"
+  gem "faker", "1.6.3"
 end
-
