@@ -34,11 +34,28 @@ en:
       signupnow: "Sign up now"
   layout:
     header:
+      signup: "Sign up"
       login: "Log in"
+      logout: "Log out"
+      editprofile: "Edit profile"
     footer:
       about: "About"
       help: "Help"
       contact: "Contact"
+  devise:
+    registrations:
+      signup: "Sign up"
+      edituser: "Edit user"
+      leave_blank: "(leave blank if you don't want to change it)"
+      minimum_password_length: "(%{minpasslength} characters minimum)"
+      need_current_pass: "(we need your current password to confirm your changes)"
+      update: "Update"
+      cancel_acc: "Cancel my account"
+      unhappy: "Unhappy?"
+      back: "Back"
+      areyousure: "Are you sure?"
+    sessions:
+      login: "Log in"
   allproduct: "All products"
   product:
     rating: "Rating"
