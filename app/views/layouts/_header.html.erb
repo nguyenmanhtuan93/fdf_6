@@ -14,9 +14,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to t("layout.header.editprofile"),
+          <% if current_user.is_admin? %>
+            <li><%= link_to t("layouts.header.users"), admin_users_path %></li>
+          <% else %>
+            <li><%= link_to t("layout.header.editprofile"),
             edit_user_registration_path %></li>
-          <li><%= link_to t("layout.header.logout"), destroy_user_session_path,
+          <% end %>
+            <li><%= link_to t("layout.header.logout"), destroy_user_session_path,
             method: :delete %></li>
         <% else %>
           <li><%= link_to t("layout.header.signup"), new_user_registration_path %></li>

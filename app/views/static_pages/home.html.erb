@@ -1,5 +1,8 @@
 <% provide :title, t("static_pages.home.title") %>
 
 <div class="center">
-  <%= link_to t("static_pages.home.signupnow"), "#", class: "btn btn-lg btn-primary" %>
+  <% unless user_signed_in? %>
+    <%= link_to t("static_pages.home.signupnow"), new_user_registration_path,
+      class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>

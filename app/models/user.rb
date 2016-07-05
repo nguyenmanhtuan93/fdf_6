@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :rates, dependent: :destroy
   has_many :suggests, dependent: :destroy
+
+  scope :normal_users, -> {where is_admin: false}
 end

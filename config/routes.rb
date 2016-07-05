@@ -5,5 +5,9 @@ Rails.application.routes.draw do
   get "about" => "static_pages#about"
   get "contact" => "static_pages#contact"
 
+  resources :users
   resources :products, only: [:index, :show]
+  namespace :admin do
+    resources :users
+  end
 end
