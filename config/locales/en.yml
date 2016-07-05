@@ -39,6 +39,7 @@ en:
       logout: "Log out"
       editprofile: "Edit profile"
       users: "Users"
+      categories: "Categories"
     footer:
       about: "About"
       help: "Help"
@@ -68,9 +69,17 @@ en:
     email: "Email"
     created_at: "Created at"
     edituser: "Edit User"
+  admin:
+    categories:
+      allcategories: "All Categories"
+      newcategory: "New Category"
+      areyousure: "Are you sure?"
+      editcategory: "Edit Category"
+      createcategory: "Create Category"
   success: "Success!"
   error: "Error!"
   edit: "Edit"
   delete: "Delete"
   save: "Save"
   confirm: "Confirm"
+  create: "Create"

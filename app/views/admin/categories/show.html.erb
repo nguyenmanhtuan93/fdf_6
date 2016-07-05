@@ -1,0 +1,11 @@
+<% provide :title, @category.name %>
+<h1><%= @category.name %></h1>
+
+<ul class="products">
+  <% if @products.any? %>
+    <% @products.each do |product| %>
+      <%= link_to product.name, product_path(product) %>
+    <% end %>
+    <%= will_paginate @products %>
+  <% end %>
+</ul>
