@@ -16,7 +16,7 @@ User.create! name: "test", email: "test@gmail.com", password: "123456",
 end
 
 50.times do |n|
-  name = Faker::Name.name
+  name = Faker::Beer.name
   price_tag = Faker::Number.between(100, 10000)
   quantity = Faker::Number.between(10, 100)
   rating = Faker::Number.between(1, 10)
@@ -26,4 +26,9 @@ end
   Product.create! name: name, category_id: category_id,
     price_tag: price_tag, classify: classify, quantity: quantity,
     rating: rating, image: image
+end
+
+10.times do |n|
+  name = Faker::Color.color_name
+  Category.create! name: name
 end

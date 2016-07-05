@@ -16,6 +16,7 @@
         <% if user_signed_in? %>
           <% if current_user.is_admin? %>
             <li><%= link_to t("layouts.header.users"), admin_users_path %></li>
+            <li><%= link_to t("layouts.header.categories"), admin_categories_path %></li>
           <% else %>
             <li><%= link_to t("layout.header.editprofile"),
             edit_user_registration_path %></li>
