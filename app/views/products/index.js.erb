@@ -1,0 +1,2 @@
+$("#results_count").html("<%= pluralize @products.count, t(:products) %>");
+$("#results").html("<%= j render "products/products", products: @products %>");

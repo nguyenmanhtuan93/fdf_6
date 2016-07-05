@@ -72,6 +72,8 @@ GEM
     execjs (2.7.0)
     faker (1.6.3)
       i18n (~> 0.5)
+    filterrific (2.0.5)
+      rails (>= 3.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -181,6 +183,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   faker (= 1.6.3)
+  filterrific
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick

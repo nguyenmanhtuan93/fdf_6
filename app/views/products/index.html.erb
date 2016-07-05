@@ -1,10 +1,68 @@
 <% provide :title, t(:allproduct) %>
 <h1><%= t :allproduct %></h1>
-<table>
-  <% @products.each do |product| %>
-    <tr>
-      <%= render "shared/show_product", product: product %>
-    </tr>
+
+<div class="well">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= label_tag :name %>
+          <%= f.text_field :with_name,
+            class: "filterrific-periodically-observed form-control" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= label_tag :classify %>
+          <%= f.select :with_classify, options_for_select(["food", "drink"]),
+            {include_blank: t(:any)}, {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= label_tag :sorted_by %>
+          <%= f.select :sorted_by, @filterrific.select_options[:sorted_by],
+            {}, {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= label_tag :category %>
+          <%= f.select :with_category_id, @filterrific.select_options[:with_category_id],
+            {include_blank: t(:any)}, {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= label_tag :rating %>
+          <%= t :from %>
+          <%= f.text_field :with_rating_from,
+            class: "filterrific-periodically-observed form-control" %>
+          <%= t :to %>
+          <%= f.text_field :with_rating_to,
+            class: "filterrific-periodically-observed form-control" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= label_tag :price %>
+          <%= t :from %>
+          <%= f.text_field :with_price_from,
+            class: "filterrific-periodically-observed form-control" %>
+          <%= t :to %>
+          <%= f.text_field :with_price_to,
+            class: "filterrific-periodically-observed form-control" %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</table>
-<%= will_paginate @products %>
+</div>
+<div class="well well-small">
+  <%= link_to t(:reset), reset_filterrific_url, class: "pull-right btn btn-small" %>
+  <div id="results_count">
+    <%= pluralize @products.count, t(:products) %>
+  </div>
+</div>
+<div id="results">
+  <%= render "products/products", products: @products %>
+</div>

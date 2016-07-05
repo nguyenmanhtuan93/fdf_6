@@ -14,6 +14,7 @@ gem "sdoc", "~> 0.4.0", group: :doc
 gem "mini_magick"
 gem "carrierwave"
 gem "will_paginate", "3.0.7"
+gem "filterrific"
 
 group :development, :test do
   gem "sqlite3"

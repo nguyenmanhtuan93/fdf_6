@@ -63,6 +63,13 @@ en:
     rating: "Rating"
     price: "Price"
     quantity: "Quantity"
+    name: "Name"
+    classify: "Classify"
+  products: "Products"
+  category: "Category"
+  any: "- Any -"
+  total: "Total products: "
+  reset: "Reset filters"
   users:
     allusers: "All users"
     name: "Name"
