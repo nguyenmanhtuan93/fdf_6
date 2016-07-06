@@ -2,3 +2,10 @@
 <div>
   <%= render "shared/show_product", product: @product %>
 </div>
+<div id="error_mesages"></div>
+<div id="comment_<%= @product.id %>">
+  <%= render @product.comments, product: @product if @product.comments.any? %>
+</div>
+<div id="comment-form">
+  <%= render "shared/comment_form", product: @product %>
+</div>

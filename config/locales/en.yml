@@ -107,3 +107,7 @@ en:
     quantity: "Quantity"
     rating: "Rating"
     createdat: "Created at"
+  addcomment: "Add comment"
+  submit: "Submit"
+  commentupdated: "Comment updated!"
+  timetype: "%d-%m-%y %H:%M"
