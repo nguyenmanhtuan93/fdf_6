@@ -15,6 +15,7 @@ gem "mini_magick"
 gem "carrierwave"
 gem "will_paginate", "3.0.7"
 gem "filterrific"
+gem "config"
 
 group :development, :test do
   gem "sqlite3"

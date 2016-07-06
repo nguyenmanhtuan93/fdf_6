@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.integer :price_tag
-      t.float :rating
+      t.float :rating, default: 0
       t.integer :classify
       t.string :image
       t.integer :quantity
