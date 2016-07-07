@@ -41,6 +41,9 @@ en:
       users: "Users"
       categories: "Categories"
       products: "Products"
+      facebook: "Sign in with Facebook"
+      twitter: "Sign in with Twitter"
+      google: "Sign in with Google"
     footer:
       about: "About"
       help: "Help"
