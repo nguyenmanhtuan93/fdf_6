@@ -1,0 +1,8 @@
+<% if @comment.save %>
+  $("#error_mesages").html("");
+  $("#comment_<%= @comment.product_id %>").append("<%= j render "comments/comment",
+    comment: @comment %>");
+  $("#comment_content_<%= @comment.product_id %>").val("")
+<% else %>
+  $("#error_mesages").append("<%= j render "shared/error_mesages", object: @comment %>");
+<% end %>

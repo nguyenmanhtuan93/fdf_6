@@ -1,0 +1,4 @@
+$("#error_mesages").html("");
+$("#comment_<%= @comment.id %>").html("<%= j render "shared/comment_form",
+  product: @comment.product %>");
+$("#comment-form").hide();

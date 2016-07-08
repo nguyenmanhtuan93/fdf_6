@@ -7,6 +7,7 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      can :manage, Comment, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

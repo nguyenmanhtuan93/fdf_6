@@ -1,0 +1,25 @@
+<div class="row" id="comment_<%= comment.id %>">
+  <div class="col-md-1 col-md-offset-1">
+    <span class="pull-right">
+      <%= link_to gravatar_for(comment.user), comment.user %>
+    </span>
+  </div>
+  <div class="col-md-8">
+    <div class="col-md-11">
+      <b><%= link_to comment.user.name, comment.user %></b>
+      <span class="time-small">
+        <%= comment.created_at.strftime t(:timetype) %>
+      </span>
+      <div>
+        <%= comment.content %>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <% if can? :manage, comment %>
+        <%= link_to t(:delete), comment, method: :delete, remote: true %>
+        <%= link_to t(:edit), edit_comment_path(comment), comment: comment,
+          remote: true %>
+      <% end %>
+    </div>
+  </div>
+</div>
