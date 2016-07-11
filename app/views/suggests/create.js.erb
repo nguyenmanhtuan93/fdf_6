@@ -1,0 +1,7 @@
+<% if @suggest.save %>
+  $("#create_notify").html("<%= t :success %>");
+  $("#suggest_content").val("");
+<% else %>
+  $("#create_notify").html("");
+  $("#create_notify").append("<%= j render "shared/error_mesages", object: @suggest %>");
+<% end %>

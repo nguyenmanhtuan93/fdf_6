@@ -18,7 +18,9 @@
             <li><%= link_to t("layouts.header.users"), admin_users_path %></li>
             <li><%= link_to t("layouts.header.categories"), admin_categories_path %></li>
             <li><%= link_to t("layouts.header.products"), admin_products_path %></li>
+            <li><%= link_to t("suggest"), admin_suggests_path %></li>
           <% else %>
+            <li><%= link_to t("suggest"), suggests_path %>
             <li><%= link_to t("layout.header.editprofile"),
             edit_user_registration_path %></li>
           <% end %>

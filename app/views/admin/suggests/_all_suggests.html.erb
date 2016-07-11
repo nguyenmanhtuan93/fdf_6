@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <th><%= t "suggest.user" %></th>
+    <th><%= t "suggest.content" %></th>
+    <th><%= t "suggest.created_at" %></th>
+    <th class="action"><%= t :action %></th>
+  </thead>
+  <tbody>
+    <% @suggests.each do |suggest| %>
+      <tr>
+        <td><%= link_to suggest.user.name, suggest.user %></td>
+        <td><%= suggest.content %></td>
+        <td><%= suggest.created_at.strftime t(:timetype) %></td>
+        <td>
+          <%= link_to t("delete"), [:admin, suggest],
+            method: :delete, class: "btn btn-primary",
+            data: {confirm: t("destroy_confirm")}, remote: true %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<div id="create_notify"></div>
+<%= form_for @suggest, remote: true do |f| %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :content, rows: 3, placeholder: t(:addsuggest),
+        class: "form-control form-margin", id: "suggest_content" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit t(:submit), class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
