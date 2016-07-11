@@ -16,6 +16,13 @@ gem "carrierwave"
 gem "will_paginate", "3.0.7"
 gem "filterrific"
 gem "config"
+gem "omniauth-facebook"
+gem "omniauth-twitter"
+gem "omniauth-google-oauth2"
+
+group :production do
+  gem "pg"
+end
 
 group :development, :test do
   gem "sqlite3"
