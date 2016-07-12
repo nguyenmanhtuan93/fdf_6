@@ -10,12 +10,13 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def new
+    @category.products.build
+    @classify = Product.classifies
   end
 
   def create
     if @category.save
-      flash[:success] = t :success
-      redirect_to admin_categories_path
+      redirect_to admin_category_path(@category)
     else
       render :new
     end
@@ -35,12 +36,16 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    flash[:danger] = t :error
-    redirect_to admin_categories_path
+    @categories = Category.all.paginate page: params[:page]
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
   def category_params
-    params.require(:category).permit :name
+    params.require(:category).permit :name,
+      products_attributes: [:name, :price_tag, :quantity, :image,
+      :classify, :_destroy]
   end
 end

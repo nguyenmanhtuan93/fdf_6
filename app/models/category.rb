@@ -1,5 +1,9 @@
 class Category < ActiveRecord::Base
   has_many :products, dependent: :destroy
+  accepts_nested_attributes_for :products,
+    reject_if: lambda {|a| a[:name].blank?}, allow_destroy: true
+
+  validates :name, presence: true, uniqueness: true
 
   class << self
     def options_for_select

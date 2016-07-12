@@ -1,0 +1,22 @@
+<div class="product_fields">
+  <div class="fieldset">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %><br>
+
+    <%= f.label :classify %><br>
+    <%= f.select :classify, @classify.collect{|key, value| [t(key), key]},
+      {include_blank: false}, {class: "form-control"} %>
+
+    <%= f.label :price_tag %><br>
+    <%= f.number_field :price_tag, class: "form-control" %>
+
+    <%= f.label :quantity %><br>
+    <%= f.number_field :quantity, class: "form-control" %><br>
+
+    <%= f.file_field :image,
+      accept: "image/jpeg, image/gif, image/png" %><br>
+
+    <%= f.hidden_field :_destroy %>
+    <%= link_to t("product.remove"), "#", class: "remove_fields" %>
+  </div>
+</div>
