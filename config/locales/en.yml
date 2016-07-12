@@ -94,6 +94,8 @@ en:
       editproduct: "Edit Product"
       areyousure: "Are you sure?"
       alt: "Product image"
+    suggests:
+      allsuggests: "All Suggests"
   success: "Success!"
   error: "Error!"
   edit: "Edit"
@@ -114,3 +116,6 @@ en:
   submit: "Submit"
   commentupdated: "Comment updated!"
   timetype: "%d-%m-%y %H:%M"
+  suggest: "Suggest"
+  addsuggest: "Add suggest"
+  destroy_confirm: "Are you sure?"
