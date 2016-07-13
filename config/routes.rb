@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
   resources :comments, except: [:new, :index, :show]
   resources :suggests, only: [:index, :create]
+  resources :orders, only: [:index, :show, :update]
+  resources :order_details, except: [:show, :new]
+
   namespace :admin do
     resources :users
     resources :categories

@@ -1,0 +1,13 @@
+<tr>
+  <td><%= order_detail.product.name %></td>
+  <td><%= order_detail.temporary_price %></td>
+  <td><%= order_detail.quantity %></td>
+  <td>
+    <% if current_order.id == @order.id %>
+      <%= link_to t("edit"), edit_order_detail_path(order_detail),
+        class: "btn btn-primary" %>
+      <%= link_to t("delete"), order_detail_path(order_detail),
+        method: :delete, class: "btn btn-primary", data: {confirm: t("confirm")} %>
+    <% end %>
+  </td>
+</tr>

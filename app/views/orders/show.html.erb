@@ -1,0 +1,55 @@
+<table class="row">
+  <tr>
+    <th><%= t "order.name" %></th>
+    <th><%= t "order.price" %></th>
+    <th><%= t "order.quanity" %></th>
+    <th></th>
+    <th>
+      <%= t "order.total" %>: <%= number_to_currency current_order[:total_pay] %>
+    </th>
+  </tr>
+  <%= render @order_details %>
+</table>
+<% if current_order.id == @order.id %>
+  <div class="row">
+    <%= link_to t("order.continue"), products_path, class: "btn btn-primary" %>
+    <%= form_for @order do |f| %>
+      <%= f.hidden_field :status, value: "ordered" %>
+      <%= f.hidden_field :payment, value: "direct" %>
+      <%= f.submit t("order.cod"), class: "btn btn-primary td-order-button" %>
+    <% end %>
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+      data-target="#order_coin"><%= t "order.coin" %></button>
+    <%= form_for @order do |f| %>
+      <div class="modal fade" id="order_coin" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel"><%= t "order.coin" %></h4>
+            </div>
+            <div class="modal-body">
+              <%= label_tag "cardnumber", t("order.cardnumber") %>
+              <%= text_field_tag "cardnumber" %>
+              <%= label_tag "name", t("order.name") %>
+              <%= text_field_tag "name" %>
+              <%= label_tag "code", t("order.code") %>
+              <%= text_field_tag "code" %>
+              <%= f.hidden_field :status, value: "ordered" %>
+              <%= f.hidden_field :payment, value: "coin" %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                <%= t "order.close" %>
+              </button>
+              <%= f.submit t("submit"), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
