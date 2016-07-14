@@ -1,19 +1,10 @@
 <% provide :title, t("admin.categories.allcategories") %>
 <h1><%= t "admin.categories.allcategories" %></h1>
 
-<div class="row">
-  <div class="center">
-    <%= link_to t("admin.categories.newcategory"), new_admin_category_path,
-      class: "btn btn-primary btn-lg" %>
-  </div>
-  <% @categories.each do |category| %>
-    <div class="category">
-      <%= link_to category.name, admin_category_path(category) %>
-      <%= link_to t(:delete), [:admin, category], method: :delete,
-        data: {confirm: t("admin.categories.areyousure")}, class: "btn btn-danger" %>
-      <%= link_to t(:edit), edit_admin_category_path(category),
-        class: "btn btn-primary" %>
-    </div>
-  <% end %>
-  <%= will_paginate %>
+<div class="center">
+  <%= link_to t("admin.categories.newcategory"), new_admin_category_path,
+    class: "btn btn-primary btn-lg" %>
+</div>
+<div id="all_categories">
+  <%= render "all_categories" %>
 </div>
