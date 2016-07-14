@@ -4,8 +4,35 @@
   <td><%= order_detail.quantity %></td>
   <td>
     <% if current_order.id == @order.id %>
-      <%= link_to t("edit"), edit_order_detail_path(order_detail),
-        class: "btn btn-primary" %>
+      <button type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="<%= "#order_detail_#{order_detail.id}" %>"><%= t "edit" %></button>
+      <%= form_for order_detail do |f| %>
+        <div class="modal fade" id="<%= "order_detail_#{order_detail.id}" %>"
+          tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                  <%= order_detail.product.name %>
+                </h4>
+              </div>
+              <div class="modal-body">
+                <%= f.label :quantity %>
+                <%= f.number_field :quantity %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  <%= t "order.close" %>
+                </button>
+                <%= f.submit t("submit"), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <%= link_to t("delete"), order_detail_path(order_detail),
         method: :delete, class: "btn btn-primary", data: {confirm: t("confirm")} %>
     <% end %>

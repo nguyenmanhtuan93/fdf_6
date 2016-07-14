@@ -1,5 +1,5 @@
 class OrderDetailsController < ApplicationController
-  before_action :find_order_detail, only: [:edit, :update, :destroy]
+  before_action :find_order_detail, only: [:update, :destroy]
   before_action :check_product_exist_in_cart, only: :create
   after_action :update_total_pay, only: [:create, :update, :destroy]
 
@@ -21,17 +21,13 @@ class OrderDetailsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @order_detail.update_attributes order_detail_params
       flash[:success] = t "success"
-      redirect_to order_path
     else
       flash[:danger] = t "error"
-      render :edit
     end
+    redirect_to order_path current_order
   end
 
   def destroy
