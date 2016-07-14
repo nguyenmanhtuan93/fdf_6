@@ -19,6 +19,7 @@ gem "config"
 gem "omniauth-facebook"
 gem "omniauth-twitter"
 gem "omniauth-google-oauth2"
+gem "social-share-button", "0.2.1"
 
 group :production do
   gem "pg"
