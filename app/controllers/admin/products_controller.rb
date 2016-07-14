@@ -2,7 +2,10 @@ class Admin::ProductsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @products = @products.paginate page: params[:page]
+    @q = Product.ransack params[:q]
+    @products = @q.result.paginate page: params[:page]
+    @q.build_condition if @q.conditions.empty?
+    @q.build_sort if @q.sorts.empty?
   end
 
   def new
@@ -32,8 +35,11 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    flash[:danger] = t :error
+    if @product.destroy
+      flash[:success] = t :success
+    else
+      flash[:danger] = t :error
+    end
     redirect_to admin_products_path
   end
 

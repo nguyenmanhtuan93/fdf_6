@@ -1,6 +1,16 @@
 <% provide :title, t("users.allusers") %>
 <h1><%= t "users.allusers" %></h1>
 
+<%= search_form_for [:admin, @q] do |f| %>
+  <%= f.label :name_cont, t("user.name") %>
+  <%= f.text_field :name_cont, class: "form-control" %>
+
+  <%= f.label :email_start, t("user.email") %>
+  <%= f.text_field :email_start, class: "form-control" %>
+
+  <%= f.submit t("searchs.search"), class: "btn btn-primary" %>
+<% end %>
+
 <% if can? :manage, @users %>
   <table class="table table-bordered">
     <thead>

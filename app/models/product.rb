@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  UNRANSACKABLE_ATTRIBUTES = ["id", "image", "updated_at"]
+
   filterrific available_filters: %w[
     with_name
     sorted_by
@@ -52,6 +54,10 @@ class Product < ActiveRecord::Base
         ["Name (a-z)", "name_asc"],
         ["Rating", "rating_desc"]
       ]
+    end
+
+    def ransackable_attributes auth_object = nil
+      column_names - UNRANSACKABLE_ATTRIBUTES + _ransackers.keys
     end
   end
 end

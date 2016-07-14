@@ -2,7 +2,8 @@ class Admin::CategoriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @categories = @categories.paginate page: params[:page]
+    @q = @categories.ransack params[:q]
+    @categories = @q.result.paginate page: params[:page]
   end
 
   def show
@@ -37,6 +38,8 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category.destroy
     @categories = Category.all.paginate page: params[:page]
+    @q = @categories.ransack params[:q]
+    @categories = @q.result.paginate page: params[:page]
     respond_to do |format|
       format.js
     end

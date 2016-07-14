@@ -13,9 +13,24 @@ Rails.application.routes.draw do
   resources :order_details, except: [:show, :new]
 
   namespace :admin do
-    resources :users
-    resources :categories
-    resources :products
+    resources :users do
+      collection do
+        match "search" => "admin#users#index",
+          via: [:get, :post], as: :search
+      end
+    end
+    resources :categories do
+      collection do
+        match "search" => "admin#categories#index",
+          via: [:get, :post], as: :search
+      end
+    end
+    resources :products do
+      collection do
+        match "search" => "admin#products#index",
+          via: [:get, :post], as: :search
+      end
+    end
     resources :suggests, only: [:index, :destroy]
   end
 end

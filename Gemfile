@@ -20,6 +20,7 @@ gem "omniauth-facebook"
 gem "omniauth-twitter"
 gem "omniauth-google-oauth2"
 gem "social-share-button", "0.2.1"
+gem "ransack"
 
 group :production do
   gem "pg"

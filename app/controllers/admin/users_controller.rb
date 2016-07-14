@@ -3,6 +3,8 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = @users.normal_users.paginate page: params[:page]
+    @q = @users.ransack params[:q]
+    @users = @q.result.paginate page: params[:page]
   end
 
   def show
@@ -22,9 +24,9 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      flash.now[:success] = t "success"
+      flash[:success] = t "success"
     else
-      flash.now[:danger] = t "error"
+      flash[:danger] = t "error"
     end
     redirect_to admin_users_path
   end
