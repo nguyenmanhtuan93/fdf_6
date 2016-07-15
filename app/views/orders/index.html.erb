@@ -1,18 +1,22 @@
 <div class="col-md-8 col-md-offset-2">
-  <table>
-    <tr>
-      <th><%= t "order.id" %></th>
-      <th><%= t "order.total" %></th>
-      <th><%= t "order.payment" %></th>
-      <th><%= t "order.status" %></th>
-    </tr>
-    <% @orders.each do |order| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= link_to order.id, order_path(order) %></td>
-        <td><%= number_to_currency order.total_pay %></td>
-        <td><%= order.payment %></td>
-        <td><%= order.status %></td>
+        <th><%= t "order.id" %></th>
+        <th><%= t "order.total" %></th>
+        <th><%= t "order.payment" %></th>
+        <th><%= t "order.status" %></th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order %></td>
+          <td><%= number_to_currency order.total_pay %></td>
+          <td><%= order.payment %></td>
+          <td><%= order.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
