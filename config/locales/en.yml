@@ -134,3 +134,7 @@ en:
   addproducts: "Add Products"
   food: "food"
   drink: "drink"
+  searchs:
+    search: "Search"
+    addconditions: "Add Conditions"
+    sort: "Sort"
