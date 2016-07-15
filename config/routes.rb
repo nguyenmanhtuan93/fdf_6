@@ -32,5 +32,6 @@ Rails.application.routes.draw do
       end
     end
     resources :suggests, only: [:index, :destroy]
+    resources :orders, only: [:index, :update, :destroy]
   end
 end

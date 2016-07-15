@@ -1,8 +1,4 @@
-<table>
-  <% products.each do |product| %>
-    <tr>
-      <%= render "shared/show_product", product: product %>
-    </tr>
-  <% end %>
-</table>
+<% products.each do |product| %>
+  <%= render "shared/show_product", product: product %>
+<% end %>
 <%= will_paginate @products %>
