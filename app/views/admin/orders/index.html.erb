@@ -7,6 +7,7 @@
       <th><%= t "order.username" %></th>
       <th><%= t "order.total" %></th>
       <th><%= t "order.payment" %></th>
+      <th><%= t "order.time" %></th>
       <th><%= t "order.status" %></th>
       <th><%= t "order.delete" %></th>
     </tr>
@@ -14,14 +15,17 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr id="order-<%= order.id %>">
-        <td>
+        <td class="clickable-row" data-href="<%= order_path order %>">
           <%= link_to order.user.name, order.user %>
         </td>
-        <td>
+        <td class="clickable-row" data-href="<%= order_path order %>">
           <%= order.total_pay %>
         </td>
-        <td>
+        <td class="clickable-row" data-href="<%= order_path order %>">
           <%= order.payment %>
+        </td>
+        <td class="clickable-row" data-href="<%= order_path order %>">
+          <%= order.created_at.strftime t "time_format" %>
         </td>
         <td>
           <div class="btn-group" role="group" aria-label="...">

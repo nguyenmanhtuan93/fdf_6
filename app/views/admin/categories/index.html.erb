@@ -1,18 +1,21 @@
 <% provide :title, t("admin.categories.allcategories") %>
 <h1><%= t "admin.categories.allcategories" %></h1>
 
-<div class="center">
+<div class="center form-group">
   <%= link_to t("admin.categories.newcategory"), new_admin_category_path,
     class: "btn btn-primary btn-lg" %>
 </div>
-<%= search_form_for [:admin, @q] do |f| %>
-  <div class="col-md-6 col-md-offset-3">
-    <%= f.label :name_cont, t("product.name") %>
-    <%= f.text_field :name_cont, class: "form-control" %>
 
-    <%= f.submit t("searchs.search"), class: "btn btn-primary btn-block" %>
-  </div>
-<% end %>
+<form class="form-inline center form-margin">
+  <%= search_form_for [:admin, @q] do |f| %>
+    <div class="form-group">
+      <%= f.label :name_cont, t("product.name") %>
+      <%= f.text_field :name_cont, class: "form-control" %>
+    </div>
+
+    <%= f.submit t("searchs.search"), class: "btn btn-primary" %>
+  <% end %>
+</form>
 
 <div id="all_categories">
   <%= render "all_categories" %>

@@ -4,19 +4,23 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for [:admin, @category] do |f| %>
-      <%= render "shared/error_mesages", object: @category %>
+      <%= render "shared/error_messages", object: @category %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
       <h2><%= t :addproducts %></h2>
       <%= f.fields_for :products do |product| %>
         <%= render "product_fields", f: product %>
       <% end %>
 
-      <%= link_to_add_fields t("product.new"), f, :products %><br>
+      <div class="form-group">
+        <%= link_to_add_fields t("product.new"), f, :products %>
+      </div>
 
-      <%= f.submit t(:create), class: "btn btn-primary" %>
+      <%= f.submit t(:create), class: "btn btn-primary btn-block" %>
     <% end %>
   </div>
 </div>

@@ -4,7 +4,7 @@
 <ul class="products">
   <% if @products.any? %>
     <% @products.each do |product| %>
-      <%= link_to product.name, product_path(product) %>
+      <%= render "shared/show_product", product: product %>
     <% end %>
     <%= will_paginate @products %>
   <% end %>
