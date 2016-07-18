@@ -1,25 +1,48 @@
-<table class="row">
-  <tr>
-    <th><%= t "order.name" %></th>
-    <th><%= t "order.price" %></th>
-    <th><%= t "order.quanity" %></th>
-    <th></th>
-    <th>
-      <%= t "order.total" %>: <%= number_to_currency current_order[:total_pay] %>
-    </th>
-  </tr>
-  <%= render @order_details %>
-</table>
 <% if current_order.id == @order.id %>
-  <div class="row">
+  <% provide :title, t("order.cart") %>
+  <h1><%= t "order.cart" %></h1>
+<% else %>
+  <% provide :title, t("order.order") %>
+  <h1><%= t "order.order" %></h1>
+<% end %>
+
+<div class="col-md-9">
+  <table class="table table-hover">
+    <tr>
+      <th></th>
+      <th><%= t "order.name" %></th>
+      <th><%= t "order.price" %></th>
+      <th><%= t "order.quanity" %></th>
+      <th><%= t "order.totalprice" %></th>
+      <% if current_order.id == @order.id %>
+        <th></th>
+        <th></th>
+      <% end %>
+    </tr>
+    <%= render @order_details %>
+  </table>
+  <% if current_order.id == @order.id %>
     <%= link_to t("order.continue"), products_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div class="col-md-3">
+  <h3 class="center">
+    <%= t "order.total" %>: <%= number_to_currency @order[:total_pay] %>
+  </h3>
+  <% if current_order.id == @order.id %>
     <% if current_order.order_details.any? %>
       <%= form_for @order do |f| %>
         <%= f.hidden_field :status, value: "ordered" %>
         <%= f.hidden_field :payment, value: "direct" %>
-        <%= f.submit t("order.direct"), class: "btn btn-primary td-order-button" %>
+        <div class="form-group">
+          <%= f.submit t("order.direct"), class: "btn btn-primary btn-block" %>
+        </div>
       <% end %>
-      <button type="button" class="btn btn-primary" data-toggle="modal"
+      <div class="center form-group">
+        <%= t "order.or" %>
+      </div>
+      <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
         data-target="#order_coin"><%= t "order.coin" %></button>
       <%= form_for @order do |f| %>
         <div class="modal fade" id="order_coin" tabindex="-1" role="dialog"
@@ -53,5 +76,5 @@
         </div>
       <% end %>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>

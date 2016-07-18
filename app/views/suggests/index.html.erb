@@ -1,13 +1,73 @@
-<div id="create_notify"></div>
-<%= form_for @suggest, remote: true do |f| %>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-1">
+<% provide :title, t("suggest.suggest") %>
+<h1><%= t "suggest.suggest" %></h1>
+
+<div class="row">
+  <%= form_for @suggest do |f| %>
+    <%= render "shared/error_messages", object: @suggest %>
+
+    <div class="col-md-6 col-md-offset-2">
       <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.text_area :content, rows: 3, placeholder: t(:addsuggest),
+      <%= f.text_area :content, rows: 3, placeholder: t("suggest.add"),
         class: "form-control form-margin", id: "suggest_content" %>
     </div>
+
     <div class="col-md-2">
       <%= f.submit t(:submit), class: "btn btn-primary" %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t "suggest.content" %></th>
+      <th><%= t "created_at" %></th>
+      <th><%= t "edit" %></th>
+      <th><%= t "delete" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @suggests.each do |suggest| %>
+      <tr>
+        <td><%= suggest.content %></td>
+        <td><%= suggest.created_at.strftime t "time_format" %></td>
+        <td>
+          <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="<%= "#suggest_#{suggest.id}" %>"><%= t "edit" %></button>
+          <%= form_for suggest do |f| %>
+            <div class="modal fade" id="<%= "suggest_#{suggest.id}" %>"
+              tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                      aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                      <%= t "edit" %>
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= f.text_area :content, rows: 3,
+                      class: "form-control form-margin" %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                      <%= t "close" %>
+                    </button>
+                    <%= f.submit t("save"), class: "btn btn-primary" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to t("delete"), suggest, method: :delete,
+            data: {confirm: t("confirm")}, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,3 +1,7 @@
-product_img_width: 125
-product_img_height: 125
+product_img_width: 100
+product_img_height: 100
+product_img_index_width: 500
+product_img_index_height: 500
+product_img_show_width: 1000
+product_img_show_height: 1000
 img_size: 25

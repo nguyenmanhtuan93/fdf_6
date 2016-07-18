@@ -1,7 +1,49 @@
 <% provide :title, @product.name %>
-<div>
-  <%= render "shared/show_product", product: @product %>
+
+<div class="col-md-6">
+  <%= image_tag @product.image.url, alt: t("products.alt"), class:
+    "img-responsive img-thumbnail", width: Settings.product_img_show_width,
+    height: Settings.product_img_show_height %>
 </div>
+<div class="col-md-6">
+  <div id="product-<%= @product.id %>">
+    <h3><%= @product.name %></h3>
+    <div class="category">
+      <%= t "products.category" %>:
+      <%= @product.category.name %>
+    </div>
+    <div class="rate">
+      <%= t "products.rating" %>:
+      <%= @product.rating %>
+    </div>
+    <div class="rate-form">
+      <%= rating_for @product, "quality", star: 10, enable_half: true %>
+    </div>
+    <div class="price">
+      <%= t "products.price" %>:
+      <%= @product.price_tag %>
+    </div>
+    <div class="quantity">
+      <%= t "products.quantity" %>:
+      <%= @product.quantity %>
+    </div>
+    <%= social_share_button_tag @product.name,
+      url: "http://fdf_6.com/products/#{@product.id}" %>
+  </div>
+  <% unless current_user.is_admin? %>
+    <form class="form-inline">
+      <%= form_for @order_detail do |f| %>
+        <div class="form-group">
+          <%= f.number_field :quantity, value: 1, min: 1, max: @product.quantity,
+            class: "form-control" %>
+        </div>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.submit t("order.addtocart"), class: "btn btn-primary" %>
+      <% end %>
+    </form>
+  <% end %>
+</div>
+
 <div id="error_mesages"></div>
 <div id="comment_<%= @product.id %>">
   <%= render @product.comments, product: @product if @product.comments.any? %>

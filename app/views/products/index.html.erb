@@ -63,6 +63,6 @@
     <%= pluralize @products.count, t("product.products") %>
   </div>
 </div>
-<div id="results">
+<div id="results" class="row">
   <%= render "products/products", products: @products %>
 </div>

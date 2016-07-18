@@ -15,15 +15,15 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <% if current_user.is_admin? %>
-            <li><%= link_to t("layouts.header.users"), admin_users_path %></li>
-            <li><%= link_to t("layouts.header.orders"), admin_orders_path %>
-            <li><%= link_to t("layouts.header.categories"), admin_categories_path %></li>
-            <li><%= link_to t("layouts.header.products"), admin_products_path %></li>
-            <li><%= link_to t("layouts.header.suggests"), admin_suggests_path %></li>
+            <li><%= link_to t("layout.header.users"), admin_users_path %></li>
+            <li><%= link_to t("layout.header.orders"), admin_orders_path %>
+            <li><%= link_to t("layout.header.categories"), admin_categories_path %></li>
+            <li><%= link_to t("layout.header.products"), admin_products_path %></li>
+            <li><%= link_to t("layout.header.suggests"), admin_suggests_path %></li>
           <% else %>
-            <li><%= link_to t("layouts.header.products"), products_path %>
-            <li><%= link_to t("layouts.header.orders"), orders_path %>
-            <li><%= link_to t("suggest"), suggests_path %>
+            <li><%= link_to t("layout.header.products"), products_path %>
+            <li><%= link_to t("layout.header.orders"), orders_path %>
+            <li><%= link_to t("layout.header.suggests"), suggests_path %>
             <li><%= link_to t("layout.header.editprofile"),
             edit_user_registration_path %></li>
           <% end %>
