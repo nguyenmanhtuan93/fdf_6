@@ -19,6 +19,7 @@ class Admin::CategoriesController < ApplicationController
     if @category.save
       redirect_to admin_category_path(@category)
     else
+      @classify = Product.classifies
       render :new
     end
   end

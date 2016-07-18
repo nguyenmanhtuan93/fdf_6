@@ -175,6 +175,7 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.2)
+    ratyrate (1.2.2.alpha)
     rdoc (4.2.2)
       json (~> 1.4)
     responders (2.2.0)
@@ -242,6 +243,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.6)
   ransack
+  ratyrate
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   social-share-button (= 0.2.1)

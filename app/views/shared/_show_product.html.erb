@@ -1,26 +1,29 @@
-<div class="col-md-6">
-  <%= link_to product_path product do %>
-    <div id="product-<%= product.id %>">
-      <div class="picture">
-        <%= link_to image_tag(product.image.url),
-          product_path(product) if product.image? %>
-      </div>
-      <div class="product-name">
-        <%= link_to product.name, product_path(product) %>
-      </div>
-      <%= product.category.name %>
-      <div class="rate">
-        <%= t :rating %>
+<div class="col-md-6" data-no-turbolink="true">
+  <div id="product-<%= product.id %>">
+    <div class="picture">
+      <%= link_to image_tag(product.image.url),
+        product_path(product) if product.image? %>
+    </div>
+    <div class="product-name">
+      <%= link_to product.name, product_path(product) %>
+    </div>
+    <%= product.category.name %>
+    <div class="rate">
+      <%= t :rating %>
+      <div id="rating">
         <%= product.rating %>
       </div>
-      <%= t :price %>
-      <%= product.price_tag %>
-      <%= t :quantity %>
-      <%= product.quantity %>
-      <%= social_share_button_tag product.name,
-        url: "http://fdf_6.com/products/#{product.id}" %>
+      <div id="rate-form">
+        <%= rating_for product, "quality", star: 10, enable_half: true %>
+      </div>
     </div>
-  <% end %>
+    <%= t :price %>
+    <%= product.price_tag %>
+    <%= t :quantity %>
+    <%= product.quantity %>
+    <%= social_share_button_tag product.name,
+      url: "http://fdf_6.com/products/#{product.id}" %>
+  </div>
   <% unless current_user.is_admin? %>
     <%= form_for @order_detail do |f| %>
       <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
