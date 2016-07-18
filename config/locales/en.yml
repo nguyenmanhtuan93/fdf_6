@@ -22,6 +22,8 @@
 en:
   hello: "Hello world"
   project_name: "Foods and Drinks"
+  time_format: "%c"
+  created_at: "Created at"
   static_pages:
     about:
       title: "About"
@@ -42,6 +44,7 @@ en:
       categories: "Categories"
       products: "Products"
       orders: "Orders"
+      suggests: "Suggests"
       facebook: "Sign in with Facebook"
       twitter: "Sign in with Twitter"
       google: "Sign in with Google"
@@ -69,7 +72,7 @@ en:
     price: "Price"
     quantity: "Quantity"
     name: "Name"
-    remove: "Remove Product"
+    remove: "Remove this product"
     new: "Add new product"
     classify: "Classify"
     products: "Products"
@@ -81,8 +84,6 @@ en:
     allusers: "All users"
     name: "Name"
     email: "Email"
-    created_at: "Created at"
-    edituser: "Edit User"
   admin:
     categories:
       allcategories: "All Categories"
@@ -143,6 +144,7 @@ en:
     payment: "Payment method"
     status: "Status"
     username: "User name"
+    time: "Order time"
   addproducts: "Add Products"
   food: "food"
   drink: "drink"

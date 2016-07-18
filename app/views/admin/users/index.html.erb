@@ -1,23 +1,41 @@
 <% provide :title, t("users.allusers") %>
 <h1><%= t "users.allusers" %></h1>
 
-<%= search_form_for [:admin, @q] do |f| %>
-  <%= f.label :name_cont, t("user.name") %>
-  <%= f.text_field :name_cont, class: "form-control" %>
+<form class="form-horizontal form-margin">
+  <%= search_form_for [:admin, @q] do |f| %>
+    <div class="form-group">
+      <div class="col-sm-3 control-label">
+        <%= f.label :name_cont, t("user.name") %>
+      </div>
+      <div class="col-sm-6 control-label">
+        <%= f.text_field :name_cont, class: "form-control" %>
+      </div>
+    </div>
 
-  <%= f.label :email_start, t("user.email") %>
-  <%= f.text_field :email_start, class: "form-control" %>
+    <div class="form-group">
+      <div class="col-sm-3 control-label">
+        <%= f.label :email_start, t("user.email") %>
+      </div>
+      <div class="col-sm-6 control-label">
+        <%= f.text_field :email_start, class: "form-control" %>
+      </div>
+    </div>
 
-  <%= f.submit t("searchs.search"), class: "btn btn-primary" %>
-<% end %>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-6">
+        <%= f.submit t("searchs.search"), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</form>
 
 <% if can? :manage, @users %>
-  <table class="table table-bordered">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th><%= t "users.name" %></th>
         <th><%= t "users.email" %></th>
-        <th><%= t "users.created_at" %></th>
+        <th><%= t "created_at" %></th>
         <th><%= t "edit" %></th>
         <th><%= t "delete" %></th>
       </tr>
@@ -25,9 +43,15 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= link_to user.name, user %></td>
-          <td><%= user.email %></td>
-          <td><%= user.created_at %></td>
+          <td class="clickable-row" data-href="<%= user_path user %>">
+            <%= link_to user.name, user %>
+          </td>
+          <td class="clickable-row" data-href="<%= user_path user %>">
+            <%= user.email %>
+          </td>
+          <td class="clickable-row" data-href="<%= user_path user %>">
+            <%= user.created_at.strftime t "time_format" %>
+          </td>
           <td><%= link_to t("edit"), edit_admin_user_path(user),
             class: "btn btn-primary" %></td>
           <td><%= link_to t("delete"), admin_user_path(user), method: :delete,

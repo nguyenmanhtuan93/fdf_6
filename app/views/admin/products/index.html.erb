@@ -1,66 +1,79 @@
 <% provide :title, t("admin.products.allproduct") %>
 <h1><%= t "admin.products.allproduct" %></h1>
 
-<div class="row">
-  <div class="center">
-    <%= link_to t("admin.products.newproduct"), new_admin_product_path,
-      class: "btn btn-primary btn-lg" %>
-  </div>
+<div class="center">
+  <%= link_to t("admin.products.newproduct"), new_admin_product_path,
+    class: "btn btn-primary btn-lg" %>
+</div>
 
-  <%= search_form_for [:admin, @q] do |f| %>
-    <%= f.condition_fields do |c| %>
-      <%= render "condition_fields", f: c %>
-    <% end %>
-
-    <%= link_to_add_fields_search t("searchs.addconditions"), f, :condition %>
-    <div class="field">
-      <%= t :sort %>
-      <%= f.sort_fields do |s| %>
-        <%= s.sort_select %>
-      <% end %>
-    </div>
-    <div class="actions"><%= f.submit t "searchs.search" %></div>
+<%= search_form_for [:admin, @q] do |f| %>
+  <%= f.condition_fields do |c| %>
+    <%= render "condition_fields", f: c %>
   <% end %>
 
-  <table class="table table-hover">
-    <thead>
+  <%= link_to_add_fields_search t("searchs.addconditions"), f, :condition %>
+  <div class="field">
+    <%= t :sort %>
+    <%= f.sort_fields do |s| %>
+      <%= s.sort_select %>
+    <% end %>
+  </div>
+  <div class="actions"><%= f.submit t "searchs.search" %></div>
+<% end %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t "products.image" %></th>
+      <th><%= sort_link @q, :name, t("products.name") %></th>
+      <th><%= sort_link @q, :classify, t("products.classify") %></th>
+      <th><%= sort_link @q, :category, t("products.category") %></th>
+      <th><%= sort_link @q, :price_tag, t("products.pricetag") %></th>
+      <th><%= sort_link @q, :quantity, t("products.quantity") %></th>
+      <th><%= sort_link @q, :rating, t("products.rating") %></th>
+      <th><%= sort_link @q, :created_at, t("products.createdat") %></th>
+      <th><%= t "edit" %></th>
+      <th><%= t "delete" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
       <tr>
-        <th><%= t "products.image" %></th>
-        <th><%= sort_link @q, :name, t("products.name") %></th>
-        <th><%= sort_link @q, :classify, t("products.classify") %></th>
-        <th><%= sort_link @q, :category, t("products.category") %></th>
-        <th><%= sort_link @q, :price_tag, t("products.pricetag") %></th>
-        <th><%= sort_link @q, :quantity, t("products.quantity") %></th>
-        <th><%= sort_link @q, :rating, t("products.rating") %></th>
-        <th><%= sort_link @q, :created_at, t("products.createdat") %></th>
-        <th><%= t "edit" %></th>
-        <th><%= t "delete" %></th>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= image_tag product.image.url, alt: t("admin.products.alt"), width:
+            Settings.product_img_width, height: Settings.product_img_height %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.name %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.classify %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.category.name %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.price_tag %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.quantity %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.rating %>
+        </td>
+        <td class="clickable-row" data-href="<%= product_path product %>">
+          <%= product.created_at.strftime t "time_format" %>
+        </td>
+        <td>
+          <%= link_to t(:edit), edit_admin_product_path(product),
+            class: "btn btn-primary" %>
+        </td>
+        <td>
+          <%= link_to t(:delete), [:admin, product], method: :delete, data:
+          {confirm: t("admin.products.areyousure")}, class: "btn btn-danger" %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
-        <tr>
-          <td>
-            <%= link_to image_tag(product.image.url, alt: t("admin.products.alt"),
-              width: Settings.product_img_width,
-              height: Settings.product_img_height), product %>
-          </td>
-          <td><%= link_to product.name, product %></td>
-          <td><%= product.classify %></td>
-          <td><%= product.category.name %></td>
-          <td><%= product.price_tag %></td>
-          <td><%= product.quantity %></td>
-          <td><%= product.rating %></td>
-          <td><%= product.created_at %></td>
-          <td><%= link_to t(:edit), edit_admin_product_path(product),
-            class: "btn btn-primary" %></td>
-          <td>
-            <%= link_to t(:delete), [:admin, product], method: :delete, data: {
-              confirm: t("admin.products.areyousure")}, class: "btn btn-danger" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= will_paginate %>
-</div>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>

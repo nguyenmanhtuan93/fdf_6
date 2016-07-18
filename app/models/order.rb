@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
   enum status: ["pending", "ordered", "delivering", "delivered"]
   enum payment: ["direct", "coin"]
 
+  scope :ordered_order, ->{where.not status: "pending"}
+
   def total_pay
     order_details.collect {|i| i.valid? ? i.temporary_price * i.quantity : 0}.sum
   end

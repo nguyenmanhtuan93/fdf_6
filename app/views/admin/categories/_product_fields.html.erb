@@ -1,22 +1,34 @@
 <div class="product_fields">
-  <div class="fieldset">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control" %><br>
+  <div class="fieldset panel panel-default">
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
-    <%= f.label :classify %><br>
-    <%= f.select :classify, @classify.collect{|key, value| [t(key), key]},
-      {include_blank: false}, {class: "form-control"} %>
+      <div class="form-group">
+        <%= f.label :classify %>
+        <%= f.select :classify, @classify.collect{|key, value| [t(key), key]},
+          {include_blank: false}, class: "form-control" %>
+      </div>
 
-    <%= f.label :price_tag %><br>
-    <%= f.number_field :price_tag, class: "form-control" %>
+      <div class="form-group">
+        <%= f.label :price_tag %>
+        <%= f.number_field :price_tag, class: "form-control" %>
+      </div>
 
-    <%= f.label :quantity %><br>
-    <%= f.number_field :quantity, class: "form-control" %><br>
+      <div class="form-group">
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity, class: "form-control" %>
+      </div>
 
-    <%= f.file_field :image,
-      accept: "image/jpeg, image/gif, image/png" %><br>
+      <div class="form-group">
+        <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png" %>
+      </div>
 
-    <%= f.hidden_field :_destroy %>
-    <%= link_to t("product.remove"), "#", class: "remove_fields" %>
+      <%= f.hidden_field :_destroy %>
+      <%= link_to t("product.remove"), "#", class: "remove_fields btn
+        btn-primary" %>
+    </div>
   </div>
 </div>

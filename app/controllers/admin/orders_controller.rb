@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @orders = @orders.paginate page: params[:page]
+    @orders = @orders.ordered_order.paginate page: params[:page]
   end
 
   def update

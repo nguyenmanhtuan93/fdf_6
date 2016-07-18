@@ -21,9 +21,11 @@
         url: "http://fdf_6.com/products/#{product.id}" %>
     </div>
   <% end %>
-  <%= form_for @order_detail do |f| %>
-    <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
-    <%= f.hidden_field :product_id, value: product.id %>
-    <%= f.submit t("submit"), class: "btn btn-primary" %>
+  <% unless current_user.is_admin? %>
+    <%= form_for @order_detail do |f| %>
+      <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
+      <%= f.hidden_field :product_id, value: product.id %>
+      <%= f.submit t("submit"), class: "btn btn-primary" %>
+    <% end %>
   <% end %>
 </div>
