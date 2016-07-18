@@ -1,4 +1,4 @@
 class Rate < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :product
+  belongs_to :rater, class_name: User.name
+  belongs_to :rateable, polymorphic: true
 end
