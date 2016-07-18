@@ -1,4 +1,5 @@
-<div class="field">
+<div class="field form-group">
+  <%= t "searchs.searchby" %>
   <%= f.attribute_fields do |a| %>
     <%= a.attribute_select associations: [:category] %>
   <% end %>
@@ -6,5 +7,5 @@
   <%= f.value_fields do |v| %>
     <%= v.text_field :value %>
   <% end %>
-  <%= link_to t("searchs.remove"), "#", class: "remove_fields" %>
+  <%= link_to t("searchs.remove"), "#", class: "remove_fields btn btn-primary btn-xs" %>
 </div>

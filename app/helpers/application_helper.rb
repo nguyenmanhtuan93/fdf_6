@@ -9,7 +9,7 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s.singularize + "_fields", f: builder)
     end
-    link_to name, "#", class: "add_fields",
+    link_to name, "#", class: "add_fields btn btn-primary",
       data: {id: id, fields: fields.gsub("\n", "")}
   end
 
@@ -19,7 +19,7 @@ module ApplicationHelper
     fields = f.send "#{type}_fields", new_object, child_index: id do |builder|
       render type.to_s + "_fields", f: builder
     end
-    link_to name, "#", class: "add_fields",
+    link_to name, "#", class: "add_fields btn btn-primary btn-xs",
       data: {id: id, fields: fields.gsub("\n", "")}
   end
 end
