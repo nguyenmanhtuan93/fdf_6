@@ -1,13 +1,44 @@
 <% provide :title, t("admin.orders.allorders") %>
 <h1><%= t "admin.orders.allorders" %></h1>
 
+<form class="form-horizontal form-margin">
+  <%= search_form_for [:admin, @q] do |f| %>
+    <div class="form-group">
+      <div class="col-sm-1 control-label">
+        <%= f.label :status_eq, t("order.status") %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.select :status_eq, @statuses.collect{|key, value| [t(key), value]},
+          {include_blank: false}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-1 control-label">
+        <%= t "searchs.sort" %>
+      </div>
+      <div class="col-sm-3 field">
+        <%= f.sort_fields do |s| %>
+          <%= s.sort_select %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-6">
+        <%= f.submit t("searchs.search"), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</form>
+
 <table class="table table-hover">
   <thead>
     <tr>
       <th><%= t "order.username" %></th>
-      <th><%= t "order.total" %></th>
-      <th><%= t "order.payment" %></th>
-      <th><%= t "order.time" %></th>
+      <th><%= sort_link @q, :total_pay, t("order.total") %></th>
+      <th><%= sort_link @q, :payment, t("order.payment") %></th>
+      <th><%= sort_link @q, :created_at, t("order.time") %></th>
       <th><%= t "order.status" %></th>
       <th><%= t "order.delete" %></th>
     </tr>

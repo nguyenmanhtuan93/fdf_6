@@ -3,6 +3,10 @@ class Admin::OrdersController < ApplicationController
 
   def index
     @orders = @orders.ordered_order.paginate page: params[:page]
+    @q = @orders.ransack params[:q]
+    @orders = @q.result.paginate page: params[:page]
+    @q.build_sort if @q.sorts.empty?
+    @statuses = Order.statuses
   end
 
   def update
