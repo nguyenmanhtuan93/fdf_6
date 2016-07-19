@@ -5,6 +5,7 @@ class Ability
     user ||= User.new
     if user.is_admin?
       can :manage, :all
+      cannot :create, Suggest
     else
       can :read, :all
       can [:create, :update], Order, user_id: user.id
