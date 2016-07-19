@@ -1,10 +1,17 @@
 <tr>
-  <td><%= order_detail.product.name %></td>
+  <td class="clickable-row" data-href="<%= product_path order_detail.product %>">
+    <%= image_tag order_detail.product.image.url, alt: t("products.alt"),
+      width: Settings.product_img_width, height: Settings.product_img_height %>
+  </td>
+  <td class="clickable-row" data-href="<%= product_path order_detail.product %>">
+    <%= order_detail.product.name %>
+  </td>
   <td><%= order_detail.temporary_price %></td>
   <td><%= order_detail.quantity %></td>
-  <td>
-    <% if current_order.id == @order.id %>
-      <button type="button" class="btn btn-primary" data-toggle="modal"
+  <td><%= order_detail.total_price %></td>
+  <% if current_order.id == @order.id %>
+    <td>
+      <button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
         data-target="<%= "#order_detail_#{order_detail.id}" %>"><%= t "edit" %></button>
       <%= form_for order_detail do |f| %>
         <div class="modal fade" id="<%= "order_detail_#{order_detail.id}" %>"
@@ -33,8 +40,10 @@
           </div>
         </div>
       <% end %>
-      <%= link_to t("delete"), order_detail_path(order_detail),
-        method: :delete, class: "btn btn-primary", data: {confirm: t("confirm")} %>
-    <% end %>
-  </td>
+    </td>
+    <td>
+      <%= link_to "", order_detail_path(order_detail), method: :delete,
+        data: {confirm: t("confirm")}, class: "glyphicon glyphicon-remove" %>
+    </td>
+  <% end %>
 </tr>

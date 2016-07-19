@@ -1,8 +1,11 @@
+<% provide :title, t("order.allorders") %>
+<h1><%= t "order.allorders" %></h1>
+
 <div class="col-md-8 col-md-offset-2">
   <table class="table table-hover">
     <thead>
       <tr>
-        <th><%= t "order.id" %></th>
+        <th><%= t "order.code" %></th>
         <th><%= t "order.total" %></th>
         <th><%= t "order.payment" %></th>
         <th><%= t "order.status" %></th>
@@ -11,10 +14,18 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.id, order %></td>
-          <td><%= number_to_currency order.total_pay %></td>
-          <td><%= order.payment %></td>
-          <td><%= order.status %></td>
+          <td class="clickable-row" data-href="<%= order_path order %>">
+            <%= link_to order.id, order %>
+          </td>
+          <td class="clickable-row" data-href="<%= order_path order %>">
+            <%= number_to_currency order.total_pay %>
+          </td>
+          <td class="clickable-row" data-href="<%= order_path order %>">
+            <%= order.payment %>
+          </td>
+          <td class="clickable-row" data-href="<%= order_path order %>">
+            <%= order.status %>
+          </td>
         </tr>
       <% end %>
     </tbody>
