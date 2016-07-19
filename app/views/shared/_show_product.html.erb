@@ -1,11 +1,10 @@
 <div class="col-sm-6 col-md-4" data-no-turbolink>
   <div class="thumbnail center show-product">
-    <%= link_to image_tag(product.image.url, alt: t("products.alt"), width:
-      Settings.product_img_index_width, height: Settings.product_img_index_height,
-      class: "img-responsive"), product_path(product) if product.image? %>
-    <div class="caption product-opacity clickable-row"
-      data-href="<%= product_path product %>">
+    <div class="caption product-opacity">
       <div id="product-<%= product.id %>">
+        <%= link_to image_tag(product.image.url, alt: t("products.alt"), width:
+          Settings.product_img_index_width, height: Settings.product_img_index_height,
+          class: "img-responsive"), product_path(product) if product.image? %>
         <div class="product-name">
           <%= link_to product.name, product_path(product) %>
         </div>
@@ -33,16 +32,12 @@
       </div>
     </div>
     <% unless current_user.is_admin? %>
-      <form class="form-inline">
-        <%= form_for @order_detail do |f| %>
-          <div class="form-group">
-            <%= f.number_field :quantity, value: 1, min: 1, max: product.quantity,
-              class: "form-control" %>
-          </div>
-          <%= f.hidden_field :product_id, value: product.id %>
-          <%= f.submit t("order.addtocart"), class: "btn btn-primary" %>
-        <% end %>
-      </form>
+      <%= form_for @order_detail do |f| %>
+        <%= f.number_field :quantity, value: 1, min: 1, max: product.quantity,
+          class: "form-control" %>
+        <%= f.hidden_field :product_id, value: product.id %>
+        <%= f.submit t("order.addtocart"), class: "btn btn-primary" %>
+      <% end %>
     <% end %>
   </div>
 </div>

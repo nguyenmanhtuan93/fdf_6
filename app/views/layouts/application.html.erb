@@ -6,7 +6,7 @@
     <%= javascript_include_tag "application", "data-turbolinks-track": true %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class="<%= user_signed_in? ? "log-in-bg" : "not-log-in-bg" %>">
     <%= render "layouts/header" %>
     <div class="container">
       <div id="flash_error">

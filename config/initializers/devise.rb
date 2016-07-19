@@ -247,7 +247,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, "139525173139042", "cdd22f377eb257df062a9cdc5a5db1b2"
+  config.omniauth :facebook, "265915437120802",
+    "2ca4dcb4451873a76b32389253f49d20"
   config.omniauth :twitter, "x9llHscvFqyq1NpXOK6pYFfN5",
     "VSxRX5zUcQF64qIYNSUCs1uCBsl21Gk9NI1HZijs7Ik7b1k67y"
   config.omniauth :google_oauth2,

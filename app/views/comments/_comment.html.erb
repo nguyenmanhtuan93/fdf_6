@@ -5,7 +5,7 @@
     </span>
   </div>
   <div class="col-md-8">
-    <div class="col-md-11">
+    <div class="col-sm-10">
       <b><%= link_to comment.user.name, comment.user %></b>
       <span class="time-small">
         <%= comment.created_at.strftime t(:timetype) %>
@@ -14,12 +14,15 @@
         <%= comment.content %>
       </div>
     </div>
-    <div class="col-md-1">
-      <% if can? :manage, comment %>
-        <%= link_to t(:delete), comment, method: :delete, remote: true %>
+    <% if can? :manage, comment %>
+      <div class="col-sm-1">
         <%= link_to t(:edit), edit_comment_path(comment), comment: comment,
           remote: true %>
-      <% end %>
-    </div>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to "", comment, method: :delete, remote: true,
+          class: "glyphicon glyphicon-remove" %>
+      </div>
+    <% end %>
   </div>
 </div>
