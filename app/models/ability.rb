@@ -9,7 +9,7 @@ class Ability
       can :read, :all
       can [:create, :update], Order, user_id: user.id
       can :manage, Comment, user_id: user.id
-      can :create, Suggest
+      can :manage, Suggest, user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

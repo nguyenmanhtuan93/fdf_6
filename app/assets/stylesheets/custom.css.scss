@@ -18,6 +18,10 @@ body {
   text-align: center;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 /* footer */
 
 .footer {
@@ -45,4 +49,17 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+/* products */
+
+.product-opacity, .show-product {
+  transition: 0.2s;
+}
+
+.show-product:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  .product-opacity {
+    opacity: 0.7;
+  }
 }
